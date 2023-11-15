@@ -1,0 +1,37 @@
+name: Documentation enhancement
+description: Suggest an enhancement for the documentation of KJect
+labels:
+  - Status ✨ New
+  - Type ⚙️ Enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to suggest an enhancement to us.
+        Please fill out the following form to help us understand your suggestion.
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: The link to the page where the enhancement should be (leave empty if you suggest a new page).
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of what you want to be added to the documentation.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Pleas check the following boxes if you have done the following.
+      options:
+        - label: I have search for [pull requests](https://github.com/KJect/kject.github.io/pulls) that implement this enhancement.
+          required: true
+        - label: I have searched for [issues](https://github.com/KJect/kject.github.io/issues) that already request this enhancement.
+          required: true

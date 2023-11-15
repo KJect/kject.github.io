@@ -1,0 +1,44 @@
+name: Documentation error
+description: Report error in the documentation to help us improve KJect
+labels:
+  - Status ✨ New
+  - Type 🐛 Bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a bug to us. 
+        Please fill out the following form to help us reproduce and fix the bug.
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: The link to the page where the error is.
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of what is wrong with the documentation.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected content
+      description: A clear and concise description of what you expected to be on the page.
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Pleas check the following boxes if you have done the following.
+      options:
+        - label: I have search for [pull requests](https://github.com/KJect/kject.github.io/pulls) that might fix this issue.
+          required: true
+        - label: I have searched for [issues](https://github.com/KJect/kject.github.io/issues) that already describe this error.
+          required: true
