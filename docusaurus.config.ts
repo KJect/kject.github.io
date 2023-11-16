@@ -1,133 +1,190 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
+import type {Options as DocOptions} from '@docusaurus/plugin-content-docs';
+import type {Options as IdealImageOptions} from '@docusaurus/plugin-ideal-image';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+    title: 'KJect',
+    tagline: 'The Kotlin Injector',
+    favicon: 'img/favicon.ico',
 
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+    url: 'https://kject.github.io/',
+    baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+    onBrokenLinks: 'throw',
+    onBrokenMarkdownLinks: 'warn',
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+    i18n: {
+        defaultLocale: 'en',
+        locales: ['en'],
+    },
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-  },
+    markdown: {
+        format: 'detect',
+        mermaid: true,
+    },
 
-  presets: [
-    [
-      'classic',
-      {
-        docs: {
-          sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        theme: {
-          customCss: './src/css/custom.css',
-        },
-      } satisfies Preset.Options,
+    customFields: {
+        description: 'The Kotlin Injector',
+    },
+
+    plugins: [
+        [
+            'content-docs',
+            {
+                id: 'community',
+                path: 'community',
+                routeBasePath: 'community',
+                editUrl: 'https://github.com/KJect/kject.github.io/edit/main/',
+                sidebarPath: './sidebarsCommunity.ts',
+                sidebarCollapsible: true,
+                sidebarCollapsed: true,
+            } satisfies DocOptions,
+        ],
+        [
+            'ideal-image',
+            {
+                quality: 70,
+                max: 1030,
+                min: 640,
+                steps: 2,
+            } satisfies IdealImageOptions,
+        ],
+        '@docusaurus/theme-mermaid',
     ],
-  ],
 
-  themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
-    navbar: {
-      title: 'My Site',
-      logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
-      },
-      items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
+    presets: [
+        [
+            'classic',
+            {
+                docs: {
+                    path: 'docs',
+                    editUrl: 'https://github.com/KJect/kject.github.io/edit/main/',
+                    showLastUpdateAuthor: true,
+                    showLastUpdateTime: true,
+                    sidebarPath: './sidebars.ts',
+                    sidebarCollapsible: true,
+                    sidebarCollapsed: true,
+                },
+                blog: {
+                    path: 'blog',
+                    postsPerPage: 3,
+                    blogSidebarCount: 'ALL',
+                    blogSidebarTitle: 'All posts',
+                    showReadingTime: true,
+                    editUrl: 'https://github.com/KJect/kject.github.io/edit/main/',
+                },
+                theme: {
+                    customCss: './src/css/custom.css',
+                },
+            } satisfies Preset.Options,
+        ],
+    ],
+
+    themeConfig: {
+        image: 'img/docusaurus-social-card.jpg',
+        colorMode: {
+            defaultMode: 'dark',
+            respectPrefersColorScheme: true,
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
+        prism: {
+            theme: prismThemes.github,
+            darkTheme: prismThemes.dracula,
+            defaultLanguage: 'kotlin',
+            magicComments: [
+                {
+                    className: 'theme-code-block-highlighted-line',
+                    line: 'highlight-next-line',
+                    block: {start: 'highlight-start', end: 'highlight-end'},
+                },
+                {
+                    className: 'code-block-error-line',
+                    line: 'This will error',
+                },
+            ],
         },
-      ],
-    },
-    footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
+        navbar: {
+            title: 'KJect',
+            logo: {
+                alt: 'Logo',
+                src: 'img/logo.svg',
             },
-          ],
+            items: [
+                {
+                    type: 'docSidebar',
+                    sidebarId: 'docsSidebar',
+                    position: 'left',
+                    label: 'Documentation',
+                },
+                {
+                    to: '/blog',
+                    position: 'left',
+                    label: 'Blog',
+                },
+                {
+                    to: '/community/support',
+                    position: 'left',
+                    label: 'Community',
+                },
+                {
+                    href: 'https://github.com/KJect/kject.github.io',
+                    position: 'right',
+                    className: 'header-github-link',
+                    'aria-label': 'GitHub repository',
+                },
+            ],
         },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
-          ],
+        footer: {
+            style: 'dark',
+            links: [
+                {
+                    title: 'Learn',
+                    items: [
+                        {
+                            label: 'Introduction',
+                            to: '/docs/introduction',
+                        },
+                        {
+                            label: 'Examples',
+                            to: '/docs/examples',
+                        },
+                        {
+                            label: 'Documentation',
+                            to: '/docs/what-is-kject',
+                        }
+                    ],
+                },
+                {
+                    title: 'More',
+                    items: [
+                        {
+                            label: 'Github',
+                            href: 'https://github.com/KJect/Kject',
+                        },
+                        {
+                            label: 'Blog',
+                            to: '/blog',
+                        },
+                        {
+                            label: 'Changelog',
+                            to: '/community/changelog',
+                        },
+                    ],
+                },
+                {
+                    title: 'Legal',
+                    items: [
+                        {
+                            label: 'Imprint',
+                            to: '/imprint',
+                        },
+                    ],
+                },
+            ],
+            copyright: `Copyright © ${new Date().getFullYear()} KJect, Built with Docusaurus.`,
         },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
-    },
-    prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
-    },
-  } satisfies Preset.ThemeConfig,
+    } satisfies Preset.ThemeConfig,
 };
 
 export default config;
