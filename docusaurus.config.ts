@@ -189,7 +189,7 @@ const config: Config = {
                     ],
                 },
             ],
-            copyright: `Copyright © ${new Date().getFullYear()} KJect, Built with Docusaurus.`,
+            copyright: `Copyright © ${new Date().getFullYear()} KJect, Built with <a href="https://docusaurus.io" target="_blank">Docusaurus</a>.`,
         },
     } satisfies Preset.ThemeConfig,
 };
