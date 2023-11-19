@@ -92,6 +92,7 @@ const config: Config = {
             theme: prismThemes.github,
             darkTheme: prismThemes.dracula,
             defaultLanguage: 'kotlin',
+            additionalLanguages: ['groovy', 'bash'],
             magicComments: [
                 {
                     className: 'theme-code-block-highlighted-line',

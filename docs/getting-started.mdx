@@ -53,7 +53,7 @@ and you can use the latest features.
                     mavenLocal()
                 }
 
-                dependencies {
+                    dependencies {
                     implementation("me.kject:Kject:$kjectVersion")
                 }
                 ```
@@ -70,7 +70,7 @@ and you can use the latest features.
                     mavenLocal()
                 }
 
-                dependencies {
+                    dependencies {
                     implementation "me.kject:Kject:$kjectVersion"
                 }
                 ```
@@ -105,6 +105,47 @@ and you can use the latest features.
     <TabItem
         value="jar"
         label="Use the jar">
+        To use the prebuilt jar, you can download it from the
+        [GitHub releases](https://github.com/KJect/KJect/releases) page.
 
+        After that you need to add the jar to your build system.
+
+        <Tabs groupId="build-system">
+            <TabItem
+                value="gradle-kotlin"
+                label="Gradle Kotlin DSL">
+                ```kotlin title="build.gradle.kts"
+                dependencies {
+                    implementation(files("path/to/Kject.jar"))
+                }
+                ```
+            </TabItem>
+            <TabItem
+                value="gradle-groovy"
+                label="Gradle Groovy DSL">
+                ```groovy title="build.gradle"
+                dependencies {
+                    implementation files("path/to/Kject.jar")
+                }
+                ```
+            </TabItem>
+            <TabItem
+                value="maven"
+                label="Maven">
+                ```xml title="pom.xml"
+                <dependencies>
+                    <dependency>
+                        <groupId>me.kject</groupId>
+                        <artifactId>Kject</artifactId>
+                        <version>latest kject version</version>
+                        <scope>system</scope>
+                        <systemPath>path/to/Kject.jar</systemPath>
+                    </dependency>
+                </dependencies>
+                ```
+
+                To update the library, you need to download the new jar and replace the old one.
+            </TabItem>
+        </Tabs>
     </TabItem>
 </Tabs>
