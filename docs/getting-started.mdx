@@ -1,0 +1,110 @@
+---
+sidebar_position: 2
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Getting Started
+To set up KJect with your currently have two options,
+either clone the repository and publish it to your local maven repository or
+download the built jar from the GitHub releases.
+
+:::tip
+
+We recommend using the local maven repository as it is easier to update,
+and you can use the latest features.
+
+:::
+
+<Tabs groupId="setup">
+    <TabItem
+        value="local"
+        label="Publish to local maven repository">
+        This option publishes the library to your local maven repository,
+        this has in general the advantage that you can easily update the library
+        and have managed versions.
+
+        1. **Clone the repository**:
+        ```bash
+        git clone https://github.com/KJect/KJect.git
+        ```
+
+        2. **Change into the directory**:
+        ```bash
+        cd KJect
+        ```
+
+        3. **Publish the library**:
+        ```bash
+        ./gradlew publishToMavenLocal
+        ```
+
+        4. **Add the dependency to your project**:
+        <Tabs groupId="build-system">
+            <TabItem
+                value="gradle-kotlin"
+                label="Gradle Kotlin DSL">
+                ```kotlin title="settings.gradle.kts"
+                kjectVersion = "latest kject version"
+                ```
+
+                ```kotlin title="build.gradle.kts"
+                repositories {
+                    mavenLocal()
+                }
+
+                dependencies {
+                    implementation("me.kject:Kject:$kjectVersion")
+                }
+                ```
+            </TabItem>
+            <TabItem
+                value="gradle-groovy"
+                label="Gradle Groovy DSL">
+                ```groovy title="settings.gradle"
+                ext.kjectVersion = "latest kject version"
+                ```
+
+                ```groovy title="build.gradle"
+                repositories {
+                    mavenLocal()
+                }
+
+                dependencies {
+                    implementation "me.kject:Kject:$kjectVersion"
+                }
+                ```
+            </TabItem>
+            <TabItem
+                value="maven"
+                label="Maven">
+                ```xml title="pom.xml"
+                <properties>
+                    <kject.version>latest kject version</kject.version>
+                </properties>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>me.kject</groupId>
+                        <artifactId>Kject</artifactId>
+                        <version>${kject.version}</version>
+                    </dependency>
+                </dependencies>
+                ```
+            </TabItem>
+        </Tabs>
+
+        To update the library, simply pull the latest changes and run the publish command again.
+        ```bash
+        git pull
+        ./gradlew publishToMavenLocal
+        ```
+
+        After that you just need to update the version in your build system.
+    </TabItem>
+    <TabItem
+        value="jar"
+        label="Use the jar">
+
+    </TabItem>
+</Tabs>
