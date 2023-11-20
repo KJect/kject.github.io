@@ -55,6 +55,44 @@ You can change the constructor KJect uses with the `@UseConstructor` annotation.
 
 :::
 
+### Dependencies
+You can ensure dependencies are created in two different ways.
+
+<Tabs>
+    <TabItem value="require" label="@Require">
+        Annotated a class with `@Require` to ensure an instance of that class is created before the annotated class.
+        ```kotlin
+        @Require(ExampleClass::class)
+        class OtherExample {
+            // ...
+        }
+        ```
+
+        KJect will ensure that the class is created, however you need to [get](#getting-an-instance) the instance
+        yourself.
+    </TabItem>
+    <TabItem value="inject" label="@Inject">
+        You can also add an constructor parameter that is annotated with `@Inject`.
+        KJect will ensure that the parameter is set to an instance of the provided class,
+        by either getting it or creating it.
+        ```kotlin
+        class OtherExample(@Inject val exampleClass: ExampleClass) {
+            // ...
+        }
+        ```
+    </TabItem>
+</Tabs>
+
+### Objects
+You can use all concepts of KJect with objects.
+KJect will use the object instance as the singleton instance.
+
+```kotlin
+object ExampleObject {
+    // ...
+}
+```
+
 ## Creating an instance
 To create the singleton instance of our class we need to call the `create` function of the `KJect` object.
 
