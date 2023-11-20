@@ -151,7 +151,7 @@ const config: Config = {
                     items: [
                         {
                             label: 'Introduction',
-                            to: '/docs/what-is-kject',
+                            to: '/docs/introduction',
                         },
                         {
                             label: 'Examples',
