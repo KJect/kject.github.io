@@ -1,0 +1,111 @@
+---
+sidebar_position: 1
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Creating and Getting Instances
+:::note
+
+KJect treads every class as a singleton.
+
+:::
+
+## Preparing our class
+First we need to prepare our class for KJect.
+For this we need to define a primary constructor.
+
+```kotlin
+class ExampleClass() {
+    
+    fun doSomething() {
+        // ...
+    }
+    
+}
+```
+
+:::note
+
+Most IDEs will tell you to remove an empty primary constructor.
+Be careful with removing it, if you class has another constructor,
+KJect will fail to create an instance of it.
+
+:::
+
+:::tip
+
+You can change the constructor KJect uses with the `@UseConstructor` annotation.
+
+<details>
+    <summary>Example</summary>
+
+    ```kotlin
+    class ExampleClass() {
+
+        // highlight
+        @UseConstructor
+        constructor(someParameter: String) : this() {
+            // ...
+        }
+
+    }
+    ```
+</details>
+
+:::
+
+## Creating an instance
+To create the singleton instance of our class we need to call the `create` function of the `KJect` object.
+
+```kotlin
+val instance = KJect.create<ExampleClass>()
+```
+
+:::tip
+
+You can use all KJect function without inlining them by
+calling them with the class as a parameter instead of using the generic type.
+
+```kotlin
+val instance = KJect.create(ExampleClass::class)
+```
+
+:::
+
+:::danger
+
+Many things can go wrong while creating an instance.
+To learn more on that topic, read the more detailed documentation on [Classes and Instances](/docs/classes-and-instances).
+
+:::
+
+## Getting an instance
+In general KJect always tries to return an instance of the provided class.
+However, if KJect can't find any instance, there are three different ways to handle this.
+
+<Tabs>
+    <TabItem label="Throw" value="throw">
+        ```kotlin
+        val instance = KJect.get<ExampleClass>()
+        ```
+
+        If no instance of the provided class exists, an `NotFoundException` will be thrown.
+    </TabItem>
+    <TabItem label="Null" value="null">
+        ```kotlin
+        val instance = KJect.getOrNull<ExampleClass>()
+        ```
+
+        If no instance of the provided class exists, `null` will be returned.
+    </TabItem>
+    <TabItem label="Create" value="create">
+        ```kotlin
+        val instance = KJect.getOrCreate<ExampleClass>()
+        ```
+
+        If no instance of the provided class exists, a new instance will be created.
+    </TabItem>
+</Tabs>
+
+Witch of these methods you should use depends on your use case.
