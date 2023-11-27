@@ -29,11 +29,11 @@ KJect.call(::function)
 KJect provides a `CallBuilder` to add parameters to function calls.
 You can provide values for any parameter of the function.
 
-There are tow special parameters that can be set via the `CallBuilder`:
+There are two special parameters that can be set via the `CallBuilder`:
 - The instance parameter, witch tells Kotlin on witch instance to call a function.
 - The receiver parameter, witch tells Kotlin on witch instance to call a receiver function.
 
-In addition you can set any other parameter of the function by name.
+In addition, you can set any other parameter of the function by name.
 
 ```kotlin title="Function"
 fun String.function(@Inject someInstance: SomeInstance, someValue: String) {

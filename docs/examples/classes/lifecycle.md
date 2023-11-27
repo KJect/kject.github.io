@@ -25,6 +25,7 @@ class ExampleClass {
     @Dispose
     fun dispose() {
         println("Disposing ExampleClass")
+        // highlight
         // Note: Other is not disposed yet
     }
     

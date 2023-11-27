@@ -7,7 +7,7 @@ KJect has a simple state machine that can be launched and disposed.
 If already launched it can't be launched again, and KJect can only be disposed if it is launched.
 
 ## Launching
-To launch a simple KJect instance, all the `launch` function on the `KJect` object.
+To launch a simple KJect instance, call the `launch` function on the `KJect` object.
 This function is suspending and requires a coroutine scope to be passed as a parameter.
 
 :::warning
